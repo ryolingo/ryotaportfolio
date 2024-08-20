@@ -1,9 +1,14 @@
 import { AppBar, Container, Toolbar, Typography } from "@mui/material";
 import React from "react";
 
-export function Header() {
+export const Header = () => {
   return (
-    <AppBar>
+    <AppBar
+      position="relative"
+      sx={{
+        backgroundColor: "white",
+      }}
+    >
       <Container>
         <Toolbar>
           <Typography>亮太のポートフォリオ</Typography>
@@ -11,6 +16,6 @@ export function Header() {
       </Container>
     </AppBar>
   );
-}
+};
 
 export default Header;
