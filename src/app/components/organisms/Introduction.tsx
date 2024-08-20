@@ -4,7 +4,7 @@ import { Avatar, Box, Container, Typography, styled } from "@mui/material";
 
 import React from "react";
 
-export function Introduction() {
+export const Introduction = () => {
   return (
     <>
       <StyledIntroBox>
@@ -21,7 +21,7 @@ export function Introduction() {
       </StyledIntroBox>
     </>
   );
-}
+};
 const StyledIntroBox = styled("div")(({ theme }) => ({
   display: "flex",
   backgroudColor: "gray",
