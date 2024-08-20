@@ -1,17 +1,16 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { Box } from "@mui/material";
+import Header from "./components/organisms/Header";
+import Footer from "./components/organisms/Footer";
+
+import Introduction from "./components/organisms/Introduction";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main>
-        <p>こんにちは</p>
-      </main>
-      <Box>
-        <Footer />
-      </Box>
+
+      <Introduction />
+
+      <Footer />
     </>
   );
 }
