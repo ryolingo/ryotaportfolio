@@ -1,3 +1,4 @@
+"use client";
 import { About } from "@/app/data/AbouList";
 import {
   VerticalTimeline,
@@ -13,11 +14,11 @@ const TimeLine: React.FC<Tprops> = ({ AboutList }) => {
   return (
     <>
       <VerticalTimeline>
-        {AboutList.map((about, index) => (
+        {AboutList.map((about) => (
           <VerticalTimelineElement
-            date={about.title}
             className="vertical-timeline-element--work"
-            iconClassName="vertical-timeline-icon"
+            date={about.date}
+            iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
             key={about.title}
           >
             <h3 className="vertical-timeline-element-title">{about.title}</h3>
