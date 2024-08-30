@@ -1,3 +1,4 @@
+"use client";
 import { Box } from "@mui/material";
 
 type CustomTabPanel = {
@@ -8,11 +9,12 @@ type CustomTabPanel = {
 
 export function CustomTabPanel(props: CustomTabPanel) {
   const { children, value, index, ...other } = props;
+
   return (
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpapnel-${index}`}
+      id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
