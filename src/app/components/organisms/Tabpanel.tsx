@@ -20,11 +20,11 @@ export default function IconLabelTabs() {
   return (
     <>
       <Box
-        borderBottom={1}
-        borderColor={"divider"}
         sx={{
           display: "flex",
           justifyContent: "center",
+          borderBottom: "1px",
+          borderColor: "divider",
         }}
       >
         <Tabs
