@@ -3,7 +3,7 @@ import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import MuiTimeLine from "./MuiTimeLine";
+import TimeLine from "./TimeLine";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -48,7 +48,6 @@ export default function TabPanel() {
         justifyContent: "center",
         display: "flex",
         alignItems: "center",
-        height: "100vh",
       }}
     >
       <Box sx={{ width: "80%" }}>
@@ -66,7 +65,7 @@ export default function TabPanel() {
         </Box>
         <Box>
           <CustomTabPanel value={value} index={0}>
-            <MuiTimeLine />
+            <TimeLine />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
             Item Two
