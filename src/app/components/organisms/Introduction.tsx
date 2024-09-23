@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Box, Container, Typography, styled } from "@mui/material";
+import { Avatar, Container, Typography, styled } from "@mui/material";
 
 import React from "react";
 
