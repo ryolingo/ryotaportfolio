@@ -1,11 +1,13 @@
-" use client";
-import React from "react";
-import Timeline from "@mui/lab/Timeline";
-import TimelineItem, { timelineItemClasses } from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineContent from "@mui/lab/TimelineContent";
-import TimelineDot from "@mui/lab/TimelineDot";
+import AboutList from "@/app/data/AboutList";
+import {
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineDot,
+  TimelineConnector,
+  TimelineContent,
+  timelineItemClasses,
+} from "@mui/lab";
 import { Typography } from "@mui/material";
 
 export default function TimeLine() {
@@ -18,53 +20,23 @@ export default function TimeLine() {
         },
       }}
     >
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <Typography>2021年3月</Typography>
-          <Typography>Title</Typography>
-          <Typography>description</Typography>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>bb</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>cc</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>dd</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>ee</TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>ff</TimelineContent>
-      </TimelineItem>
-      <TimelineDot />
+      {AboutList.map((item, index) => (
+        <TimelineItem key={index}>
+          <TimelineSeparator>
+            <TimelineDot sx={{ width: "24px", height: "24px" }} />
+            {index < AboutList.length - 1 && (
+              <TimelineConnector
+                sx={{ width: "4px", backgroundColor: "black" }}
+              />
+            )}
+          </TimelineSeparator>
+          <TimelineContent>
+            <Typography>{item.date}</Typography>
+            <Typography>{item.title}</Typography>
+            <Typography>{item.subtitle}</Typography>
+          </TimelineContent>
+        </TimelineItem>
+      ))}
     </Timeline>
   );
 }
