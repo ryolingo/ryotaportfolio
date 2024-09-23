@@ -1,6 +1,6 @@
 import { About } from "../../../types";
 
-const AbouList: About[] = [
+const AboutList: About[] = [
   {
     date: "2016~2018",
     title: "練馬区立田柄中学校に入学",
@@ -44,4 +44,4 @@ const AbouList: About[] = [
     subtitle: "英語を使った学内イベントに積極的に参加し、英語力向上",
   },
 ];
-export default AbouList;
+export default AboutList;
