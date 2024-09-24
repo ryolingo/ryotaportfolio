@@ -7,6 +7,7 @@ export const Header = () => {
       position="relative"
       sx={{
         backgroundColor: "white",
+        color: "black",
       }}
     >
       <Container>
