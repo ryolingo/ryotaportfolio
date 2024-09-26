@@ -7,7 +7,7 @@ import React from "react";
 export const Introduction = () => {
   return (
     <>
-      <StyledIntroBox>
+      <StyledIntroBox sx={{ mt: "30px" }}>
         <StyledImage>
           <StyledAvatar alt=" Profile Image" src="/images/avatar.jpg" />
         </StyledImage>
