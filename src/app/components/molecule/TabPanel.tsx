@@ -3,8 +3,8 @@ import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import Works from "@/app/data/Works";
 import TimeLine from "./TimeLine";
+import Works from "../organisms/Works";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -19,8 +19,8 @@ function CustomTabPanel(props: TabPanelProps) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index.toString}`}
-      aria-labelledby={`simple-tab-${index.toString}`}
+      id={`simple-tabpanel-${index.toString()}`}
+      aria-labelledby={`simple-tab-${index.toString()}`}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
