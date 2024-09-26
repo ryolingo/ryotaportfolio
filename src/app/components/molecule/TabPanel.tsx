@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import TimeLine from "./TimeLine";
 import Works from "../organisms/Works";
+import Skills from "../organisms/Skills";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -73,7 +74,7 @@ export default function TabPanel() {
             <Works />
           </CustomTabPanel>
           <CustomTabPanel value={value} index={2}>
-            Item Three
+            <Skills />
           </CustomTabPanel>
         </Box>
       </Box>
