@@ -3,8 +3,8 @@ import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import TimeLine from "./TimeLine";
 import Works from "@/app/data/Works";
+import TimeLine from "./TimeLine";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -19,8 +19,8 @@ function CustomTabPanel(props: TabPanelProps) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`simple-tabpanel-${index.toString}`}
+      aria-labelledby={`simple-tab-${index.toString}`}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -46,22 +46,23 @@ export default function TabPanel() {
     <Box
       sx={{
         width: "100%",
-        justifyContent: "center",
         display: "flex",
+        justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <Box sx={{ width: "80%" }}>
+      <Box sx={{ width: "80%", margin: "0 auto" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
             sx={{}}
+            centered
           >
-            <Tab label="Item One" {...a11yProps(0)} />
-            <Tab label="Item Two" {...a11yProps(1)} />
-            <Tab label="Item Three" {...a11yProps(2)} />
+            <Tab label="About Me" {...a11yProps(0)} />
+            <Tab label="Works" {...a11yProps(1)} />
+            <Tab label="Skills" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <Box>
