@@ -11,10 +11,10 @@ export const Introduction = () => {
         <StyledImage>
           <StyledAvatar alt=" Profile Image" src="/images/avatar.jpg" />
         </StyledImage>
-        <StyledContainer>
-          <StyledTitle>Ryota Matsumoto</StyledTitle>
-          <StyledSubtitle>松本亮太</StyledSubtitle>
-          <StyledText>
+        <StyledContainer disableGutters>
+          <StyledTitle sx={{ color: "#333333" }}>Ryota Matsumoto</StyledTitle>
+          <StyledSubtitle sx={{ color: "#333333" }}>松本亮太</StyledSubtitle>
+          <StyledText sx={{ color: "#4a4a4az" }}>
             成蹊大学法学部/Pech.Tech/ACE公式テニス同好会副代表
           </StyledText>
         </StyledContainer>
@@ -22,13 +22,15 @@ export const Introduction = () => {
     </>
   );
 };
+
 const StyledIntroBox = styled("div")(({ theme }) => ({
   display: "flex",
   backgroudColor: "gray",
-  paddingLeft: "2rem",
-  backgroundColor: "e0ffff",
+  backgroundColor: "#f3f3f3",
+  width: "100%",
+
   [theme.breakpoints.down("sm")]: {
-    maginTop: "3rem",
+    marginTop: "3rem",
   },
 }));
 
@@ -38,6 +40,8 @@ const StyledContainer = styled(Container)(({ theme }) => ({
   height: "25rem",
   backgroundColor: "F5F4EE",
   flexDirection: "column",
+  padding: "0",
+  marginRight: "0",
   justifyContent: "center",
   [theme.breakpoints.down("sm")]: {
     paddingLeft: "5%",
@@ -50,6 +54,7 @@ const StyledTitle = styled(Typography)(({ theme }) => ({
   fontSize: "5.5rem",
   fontWeight: "bold",
   letterSpacing: "2.3",
+
   [theme.breakpoints.down("sm")]: {
     fontSize: "2rem",
   },
@@ -90,8 +95,9 @@ const StyledImage = styled("div")(({ theme }) => ({
 }));
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
-  width: "17rem",
-  height: "17rem",
+  width: "20rem",
+  height: "20rem",
+  marginLeft: "2rem",
   [theme.breakpoints.down("sm")]: {
     width: "7rem",
     height: "7rem",
