@@ -21,7 +21,6 @@ export const Header = () => {
           <Typography
             variant="h6"
             sx={{
-              textTransform: "uppercase",
               fontWeight: "bold",
               fontSize: "1.5rem",
               paddingLeft: "1rem",
