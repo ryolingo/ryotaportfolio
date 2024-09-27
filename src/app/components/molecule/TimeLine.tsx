@@ -15,8 +15,10 @@ import { useInView } from "react-intersection-observer";
 const cardStyle = {
   padding: "16px",
   margin: "8px 0",
-  backgroundColor: "#f5f5f5",
+  backgroundColor: "#ffffff",
   borderRadius: "8px",
+  boxShadow: "none",
+  border: "2px solid black",
   opacity: 0,
   transform: "translateY(20px)",
   transition: "opacity 1s ease-in-out, transform 1s ease-in-out",
@@ -34,7 +36,7 @@ const subtitleStyle = {
 const timelineItemStyle = {
   display: "flex",
   alignItems: "center",
-  marginBottom: "20px", // 各アイテム間の間隔を設定
+  marginBottom: "20px",
   opacity: 0,
   transform: "translateY(20px)",
   transition: "opacity 1s ease-in-out, transform 1s ease-in-out",
