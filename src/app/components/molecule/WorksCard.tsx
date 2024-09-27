@@ -51,8 +51,8 @@ const WorkCard: React.FC<TProps> = ({ workCard }) => {
 const StyledContainer = styled("div")(({ theme }) => ({
   display: "flex",
   margin: "4.5%",
-  borderBottom: "1px solid #ccc", // ボーダーを追加
-  paddingBottom: "1rem", // ボーダーとコンテンツの間にスペースを追加
+  borderBottom: "1px solid #ccc",
+  paddingBottom: "1rem",
   [theme.breakpoints.down("sm")]: {
     display: "block",
     margin: "3%",
