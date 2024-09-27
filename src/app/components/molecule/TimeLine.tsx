@@ -11,6 +11,7 @@ import {
 import { Card, Typography } from "@mui/material";
 import { keyframes } from "@emotion/react";
 import { useInView } from "react-intersection-observer";
+import React from "react";
 
 const cardStyle = {
   padding: "16px",
@@ -58,18 +59,29 @@ const fadeIn = keyframes`
 `;
 
 export default function OppositeContentTimeline() {
+  const [refs, setRefs] = React.useState([]); // すべてのrefを保持するステート
+  const inViewData = AboutList.map(() =>
+    useInView({ triggerOnce: true, threshold: 0.1 })
+  ); // AboutListの各アイテムに対してuseInViewを呼び出す
+
+  // 各アイテムのrefを保存する
+  React.useEffect(() => {
+    setRefs((elRefs) =>
+      Array(AboutList.length)
+        .fill(null, 0, AboutList.length)
+        .map((_, i) => elRefs[i] || React.createRef())
+    );
+  }, []);
+
   return (
     <Timeline position="alternate">
       {AboutList.map((item, index) => {
-        const { ref, inView } = useInView({
-          triggerOnce: true,
-          threshold: 0.1,
-        });
+        const { ref, inView } = inViewData[index]; // 各アイテムごとのinViewデータを取得
 
         return (
           <TimelineItem
             key={index}
-            ref={ref}
+            ref={refs[index]}
             style={{
               ...timelineItemStyle,
               opacity: inView ? 1 : 0,
