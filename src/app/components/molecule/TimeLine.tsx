@@ -4,14 +4,11 @@ import {
   TimelineItem,
   TimelineSeparator,
   TimelineDot,
-  TimelineConnector,
   TimelineContent,
   TimelineOppositeContent,
 } from "@mui/lab";
 import { Card, Typography } from "@mui/material";
-import { keyframes } from "@emotion/react";
-import { useInView } from "react-intersection-observer";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const cardStyle = {
   padding: "16px",
@@ -22,7 +19,7 @@ const cardStyle = {
   border: "2px solid black",
   opacity: 0,
   transform: "translateY(20px)",
-  transition: "opacity 1s ease-in-out, transform 1s ease-in-out",
+  transition: "opacity 0.5s ease-in-out, transform 0.5s ease-in-out",
 };
 
 const titleStyle = {
@@ -34,101 +31,80 @@ const subtitleStyle = {
   color: "#555",
 };
 
-const timelineItemStyle = {
-  display: "flex",
-  alignItems: "center",
-  marginBottom: "20px",
-  opacity: 0,
-  transform: "translateY(20px)",
-  transition: "opacity 1s ease-in-out, transform 1s ease-in-out",
-};
-
-const timelineContentStyle = {
-  flex: 1,
-};
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
 export default function OppositeContentTimeline() {
-  const [refs, setRefs] = React.useState([]); // すべてのrefを保持するステート
-  const inViewData = AboutList.map(() =>
-    useInView({ triggerOnce: true, threshold: 0.1 })
-  ); // AboutListの各アイテムに対してuseInViewを呼び出す
+  const [visibleItems, setVisibleItems] = useState(
+    Array(AboutList.length).fill(false)
+  );
+  const refs = useRef<(HTMLDivElement | null)[]>([]); // refsの型を明示
 
-  // 各アイテムのrefを保存する
-  React.useEffect(() => {
-    setRefs((elRefs) =>
-      Array(AboutList.length)
-        .fill(null, 0, AboutList.length)
-        .map((_, i) => elRefs[i] || React.createRef())
-    );
+  useEffect(() => {
+    const handleScroll = () => {
+      const updatedVisibleItems = AboutList.map((_, index) => {
+        const ref = refs.current[index];
+        return ref && ref.getBoundingClientRect().top < window.innerHeight; // ビューポートに入ったか判定
+      });
+      setVisibleItems(updatedVisibleItems);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <Timeline position="alternate">
-      {AboutList.map((item, index) => {
-        const { ref, inView } = inViewData[index]; // 各アイテムごとのinViewデータを取得
-
-        return (
-          <TimelineItem
-            key={index}
-            ref={refs[index]}
-            style={{
-              ...timelineItemStyle,
-              opacity: inView ? 1 : 0,
-              transform: inView ? "translateY(0)" : "translateY(20px)",
-              transitionDelay: `${index * 0.2}s`,
-            }}
+      {AboutList.map((item, index) => (
+        <TimelineItem
+          key={index}
+          ref={(el) => {
+            refs.current[index] = el as HTMLDivElement;
+          }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          {" "}
+          {/* 型アサーションを使用 */}
+          <TimelineOppositeContent
+            color="text.secondary"
+            sx={{ flexDirection: "row" }}
           >
-            <TimelineOppositeContent color="text.secondary">
-              <Typography variant="body2">{item.date}</Typography>
-            </TimelineOppositeContent>
-            <TimelineSeparator>
-              <TimelineDot
-                sx={{
-                  height: "30px",
-                  width: "30px",
-                  animation: `${fadeIn} 1s ease-in-out`,
-                }}
-              />
-              {index < AboutList.length - 1 && <TimelineConnector />}
-            </TimelineSeparator>
-            <TimelineContent
+            <Typography variant="body2">{item.date}</Typography>
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot
+              sx={{
+                width: "10px",
+                height: "10px",
+                "@media(max-width:600px)": {},
+              }}
+            />
+            {index < AboutList.length - 1}
+          </TimelineSeparator>
+          <TimelineContent>
+            <Card
               style={{
-                ...timelineContentStyle,
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)",
-                transitionDelay: `${index * 0.2}s`,
+                ...cardStyle,
+                opacity: visibleItems[index] ? 1 : 0, // ビジュアルアイテムの可視性
+                transform: visibleItems[index]
+                  ? "translateY(0)"
+                  : "translateY(20px)", // アニメーション
               }}
             >
-              <Card
-                style={{
-                  ...cardStyle,
-                  opacity: inView ? 1 : 0,
-                  transform: inView ? "translateY(0)" : "translateY(20px)",
-                  transitionDelay: `${index * 0.2}s`,
-                }}
-              >
-                <Typography variant="h6" style={titleStyle}>
-                  {item.title}
-                </Typography>
-                <Typography variant="body2" style={subtitleStyle}>
-                  {item.subtitle}
-                </Typography>
-              </Card>
-            </TimelineContent>
-          </TimelineItem>
-        );
-      })}
+              <Typography variant="h6" style={titleStyle}>
+                {item.title}
+              </Typography>
+              <Typography variant="body2" style={subtitleStyle}>
+                {item.subtitle}
+              </Typography>
+            </Card>
+          </TimelineContent>
+        </TimelineItem>
+      ))}
     </Timeline>
   );
 }
