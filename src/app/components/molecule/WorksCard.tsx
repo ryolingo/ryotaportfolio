@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Work } from "../../data/WorkList";
 import { Box, Typography, styled, Link } from "@mui/material";
-import { text } from "stream/consumers";
 
 type TProps = {
   workCard: Work;
