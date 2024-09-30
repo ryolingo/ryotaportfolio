@@ -1,7 +1,5 @@
 "use client";
-
 import { Avatar, Container, Typography, styled } from "@mui/material";
-
 import React from "react";
 
 export const Introduction = () => {
