@@ -7,7 +7,10 @@ export const Introduction = () => {
     <>
       <StyledIntroBox sx={{ mt: "30px" }}>
         <StyledImage>
-          <StyledAvatar alt=" Profile Image" src="/images/avatar.jpg" />
+          <StyledAvatar
+            alt=" Profile Image"
+            src="/images/introdaction/avatar.JPG"
+          />
         </StyledImage>
         <StyledContainer disableGutters>
           <StyledTitle sx={{ color: "#333333" }}>Ryota Matsumoto</StyledTitle>
