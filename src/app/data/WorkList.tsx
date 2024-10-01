@@ -32,4 +32,15 @@ export const WorkList: Work[] = [
       github: "https://github.com/ryolingo/Keyaki2024",
     },
   },
+  {
+    imagePath: "portfolio.png",
+    title: "ポートフォリオ",
+    details: {
+      content: "このサイトです！",
+      description:
+        " Next.jsとTypescriptとMaterial-UIを使用して作成しました。初めてのポートフォリオ作成で、「シンプルにわかりやすく」をテーマにしてました。",
+      language: "Typescript / Next.js / Supabase",
+      github: "https://ryotaportfolio.vercel.app/",
+    },
+  },
 ];
