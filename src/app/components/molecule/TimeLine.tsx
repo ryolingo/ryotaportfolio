@@ -7,7 +7,7 @@ import {
   TimelineContent,
   TimelineOppositeContent,
 } from "@mui/lab";
-import { Card, Typography } from "@mui/material";
+import { Card, Typography, useMediaQuery } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 
 const cardStyle = {
@@ -35,13 +35,16 @@ export default function OppositeContentTimeline() {
   const [visibleItems, setVisibleItems] = useState(
     Array(AboutList.length).fill(false)
   );
-  const refs = useRef<(HTMLDivElement | null)[]>([]); // refsの型を明示
+  const refs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // メディアクエリで600px以下の画面サイズをモバイルと判定
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   useEffect(() => {
     const handleScroll = () => {
       const updatedVisibleItems = AboutList.map((_, index) => {
         const ref = refs.current[index];
-        return ref && ref.getBoundingClientRect().top < window.innerHeight; // ビューポートに入ったか判定
+        return ref && ref.getBoundingClientRect().top < window.innerHeight;
       });
       setVisibleItems(updatedVisibleItems);
     };
@@ -55,7 +58,17 @@ export default function OppositeContentTimeline() {
   }, []);
 
   return (
-    <Timeline position="alternate">
+    <Timeline
+      position={isMobile ? "right" : "alternate"} // モバイル時に position を right に変更
+      sx={{
+        "@media(max-width:600px)": {
+          "& .MuiTimelineItem-root": {
+            flexDirection: "column", // モバイル時は要素を縦並びに変更
+            alignItems: "flex-start", // カードを左寄せ
+          },
+        },
+      }}
+    >
       {AboutList.map((item, index) => (
         <TimelineItem
           key={index}
@@ -67,32 +80,37 @@ export default function OppositeContentTimeline() {
             alignItems: "center",
           }}
         >
-          {" "}
-          {/* 型アサーションを使用 */}
+          {/* タイムラインオポジットコンテンツ（日付） */}
           <TimelineOppositeContent
             color="text.secondary"
-            sx={{ flexDirection: "row" }}
+            sx={{
+              flexDirection: "row",
+              padding: isMobile ? "0 8px" : "0 16px", // モバイル時に余白を調整
+              order: isMobile ? 2 : 0, // モバイル時は order を使って subtitle の後に表示
+            }}
           >
             <Typography variant="body2">{item.date}</Typography>
           </TimelineOppositeContent>
+
           <TimelineSeparator>
-            <TimelineDot
-              sx={{
-                width: "10px",
-                height: "10px",
-                "@media(max-width:600px)": {},
-              }}
-            />
+            <TimelineDot sx={{ width: "10px", height: "10px" }} />
             {index < AboutList.length - 1}
           </TimelineSeparator>
-          <TimelineContent>
+
+          {/* タイムラインコンテンツ（タイトルとサブタイトル） */}
+          <TimelineContent
+            sx={{
+              padding: isMobile ? "0" : "0 16px", // モバイル時は余白をなくす
+              width: "100%", // カードを広げる
+            }}
+          >
             <Card
               style={{
                 ...cardStyle,
-                opacity: visibleItems[index] ? 1 : 0, // ビジュアルアイテムの可視性
+                opacity: visibleItems[index] ? 1 : 0,
                 transform: visibleItems[index]
                   ? "translateY(0)"
-                  : "translateY(20px)", // アニメーション
+                  : "translateY(20px)",
               }}
             >
               <Typography variant="h6" style={titleStyle}>
