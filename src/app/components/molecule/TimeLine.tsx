@@ -61,11 +61,10 @@ export default function OppositeContentTimeline() {
     <Timeline
       position={isMobile ? "right" : "alternate"} // モバイル時に position を right に変更
       sx={{
+        display: "flex", // Flexboxを使用
+        flexDirection: isMobile ? "row" : "column", // モバイル時は横並びにする
         "@media(max-width:600px)": {
-          "& .MuiTimelineItem-root": {
-            flexDirection: "column", // モバイル時は要素を縦並びに変更
-            alignItems: "flex-start", // カードを左寄せ
-          },
+          flexDirection: "column",
         },
       }}
     >
@@ -78,6 +77,9 @@ export default function OppositeContentTimeline() {
           sx={{
             display: "flex",
             alignItems: "center",
+            "@media(max-width:600px)": {
+              flexDirection: "row", // モバイル時は要素を縦並びに変更
+            },
           }}
         >
           {/* タイムラインオポジットコンテンツ（日付） */}
@@ -93,17 +95,17 @@ export default function OppositeContentTimeline() {
           </TimelineOppositeContent>
 
           <TimelineSeparator>
-            <TimelineDot sx={{ width: "10px", height: "10px" }} />
+            <TimelineDot
+              sx={{
+                width: "10px",
+                height: "10px",
+              }}
+            />
             {index < AboutList.length - 1}
           </TimelineSeparator>
 
           {/* タイムラインコンテンツ（タイトルとサブタイトル） */}
-          <TimelineContent
-            sx={{
-              padding: isMobile ? "0" : "0 16px", // モバイル時は余白をなくす
-              width: "100%", // カードを広げる
-            }}
-          >
+          <TimelineContent>
             <Card
               style={{
                 ...cardStyle,
@@ -112,6 +114,7 @@ export default function OppositeContentTimeline() {
                   ? "translateY(0)"
                   : "translateY(20px)",
               }}
+              sx={{ width: "100%" }}
             >
               <Typography variant="h6" style={titleStyle}>
                 {item.title}
