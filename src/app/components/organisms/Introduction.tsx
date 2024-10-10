@@ -14,9 +14,9 @@ export const Introduction = () => {
         </StyledImage>
         <StyledContainer disableGutters>
           <StyledTitle sx={{ color: "#333333" }}>Ryota Matsumoto</StyledTitle>
-          <StyledSubtitle sx={{ color: "#333333" }}>松本亮太</StyledSubtitle>
+          <StyledSubtitle sx={{ color: "#333333" }}>松本 亮太</StyledSubtitle>
           <StyledText sx={{ color: "#4a4a4az" }}>
-            成蹊大学法学部/Pech.Tech/ACE公式テニス同好会副代表
+            成蹊大学法学部/Peach.Tech/ACE公式テニス同好会副代表
           </StyledText>
         </StyledContainer>
       </StyledIntroBox>
@@ -62,7 +62,7 @@ const StyledTitle = styled(Typography)(({ theme }) => ({
 }));
 
 const StyledSubtitle = styled(Typography)(({ theme }) => ({
-  letterSpacing: "1.5rem",
+  letterSpacing: "0.5rem",
   color: "gray",
   alignItems: "center",
   fontSize: "2.5rem",
@@ -70,7 +70,7 @@ const StyledSubtitle = styled(Typography)(({ theme }) => ({
   fontWeight: "bold",
   [theme.breakpoints.down("sm")]: {
     fontSize: "0.7rem",
-    letterSpacing: "1.7",
+    letterSpacing: "1",
   },
 }));
 
@@ -98,7 +98,8 @@ const StyledImage = styled("div")(({ theme }) => ({
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
   width: "20rem",
   height: "20rem",
-  marginLeft: "2rem",
+  marginLeft: "30%",
+  marginTop: "10%",
   [theme.breakpoints.down("sm")]: {
     width: "7rem",
     height: "7rem",

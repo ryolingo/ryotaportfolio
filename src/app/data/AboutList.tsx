@@ -45,7 +45,7 @@ const AboutList: About[] = [
   },
   {
     date: "2024年9月",
-    title: "Toiecスコア855取得",
+    title: "TOEICスコア855取得",
     subtitle: "英語を使った学内イベントに積極的に参加し、英語力向上",
   },
 ];

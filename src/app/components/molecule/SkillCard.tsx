@@ -15,7 +15,7 @@ type TProps = {
 
 const SkillCard: React.FC<TProps> = ({ skillCard }) => {
   return (
-    <Card sx={{ width: "auto", margin: 1 }}>
+    <Card sx={{ width: "auto", margin: { xs: "1rem", lg: "2rem" } }}>
       <CardActionArea>
         <Box textAlign="center" mt={3}>
           <Image
@@ -26,7 +26,10 @@ const SkillCard: React.FC<TProps> = ({ skillCard }) => {
           />
         </Box>
         <CardContent>
-          <Typography textAlign="center" fontSize="1.2rem">
+          <Typography
+            textAlign="center"
+            fontSize={{ xs: "1.2rem", lg: "1.5rem" }}
+          >
             {skillCard.title}
           </Typography>
         </CardContent>
