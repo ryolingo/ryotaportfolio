@@ -17,17 +17,8 @@ export const Header = () => {
       }}
     >
       <Container disableGutters>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: "bold",
-              fontSize: "1.5rem",
-              paddingLeft: "1rem",
-              letterSpacing: "0.1em",
-              mt: "0.5rem",
-            }}
-          >
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Typography variant="h6" fontWeight="bold" fontSize="2.0rem">
             Portfolio
           </Typography>
           <StyledIcon>
@@ -38,7 +29,10 @@ export const Header = () => {
               />
             </Link>
             <Link href={"https://x.com/ryolongo"} target="blank">
-              <StyledImage src={"/images/header/x.png"} alt="twitterアイコン" />
+              <Styledtwitter
+                src={"/images/header/x.png"}
+                alt="twitterアイコン"
+              />
             </Link>
           </StyledIcon>
         </Toolbar>
@@ -50,21 +44,31 @@ export const Header = () => {
 export default Header;
 
 const StyledIcon = styled("div")(({ theme }) => ({
-  marginLeft: "auto", // アイコンを右に寄せる
-  marginRight: "3%",
-  gap: "1rem", // アイコンの間隔
+  width: "4rem",
   display: "flex",
   flexDirection: "row",
+  alignItems: "center",
+  gap: "1rem",
   [theme.breakpoints.down("sm")]: {
     marginRight: "1.7%",
     gap: "1rem",
   },
 }));
 
+const Styledtwitter = styled("img")(({ theme }) => ({
+  width: "2.5rem",
+  height: "2.5rem",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "3rem",
+    height: "3rem",
+    marginTop: "0.5rem",
+  },
+}));
+
 const StyledImage = styled("img")(({ theme }) => ({
   width: "3rem",
   height: "3rem",
-
   [theme.breakpoints.down("sm")]: {
     width: "3rem",
     height: "3rem",
