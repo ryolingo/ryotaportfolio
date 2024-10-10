@@ -7,7 +7,7 @@ import {
   TimelineContent,
   TimelineOppositeContent,
 } from "@mui/lab";
-import { Card, Typography, useMediaQuery } from "@mui/material";
+import { Box, Card, Typography, useMediaQuery } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 
 const cardStyle = {
@@ -59,73 +59,103 @@ export default function OppositeContentTimeline() {
 
   return (
     <Timeline
-      position={isMobile ? "right" : "alternate"} // モバイル時に position を right に変更
-      sx={{
-        display: "flex", // Flexboxを使用
-        flexDirection: isMobile ? "row" : "column", // モバイル時は横並びにする
-        "@media(max-width:600px)": {
-          flexDirection: "column",
-        },
-      }}
+      position={isMobile ? undefined : "alternate"} // モバイル時に position を right に変更
     >
-      {AboutList.map((item, index) => (
-        <TimelineItem
-          key={index}
-          ref={(el) => {
-            refs.current[index] = el as HTMLDivElement;
-          }}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            "@media(max-width:600px)": {
-              flexDirection: "row", // モバイル時は要素を縦並びに変更
-            },
-          }}
-        >
-          {/* タイムラインオポジットコンテンツ（日付） */}
-          <TimelineOppositeContent
-            color="text.secondary"
+      {AboutList.map((item, index) =>
+        isMobile ? (
+          <TimelineItem
+            key={index}
+            ref={(el) => {
+              refs.current[index] = el as HTMLDivElement;
+            }}
+            sx={{ display: "flex", flexDirection: "column" }}
+          >
+            <Box
+              color="text.secondary"
+              sx={{
+                flexDirection: "row",
+              }}
+            >
+              <Typography fontSize={"1.25rem"}>{item.date}</Typography>
+            </Box>
+
+            {/* タイムラインコンテンツ（タイトルとサブタイトル） */}
+            <TimelineContent>
+              <Card
+                style={{
+                  ...cardStyle,
+                  opacity: visibleItems[index] ? 1 : 0,
+                  // transform: visibleItems[index]
+                  // ? "translateY(0)": "translateY(20px)",
+                }}
+              >
+                <Typography variant="h6" fontSize="1rem" style={titleStyle}>
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" style={subtitleStyle}>
+                  {item.subtitle}
+                </Typography>
+              </Card>
+            </TimelineContent>
+          </TimelineItem>
+        ) : (
+          <TimelineItem
+            key={index}
+            ref={(el) => {
+              refs.current[index] = el as HTMLDivElement;
+            }}
             sx={{
-              flexDirection: "row",
-              padding: isMobile ? "0 8px" : "0 16px", // モバイル時に余白を調整
-              order: isMobile ? 2 : 0, // モバイル時は order を使って subtitle の後に表示
+              display: "flex",
+              alignItems: "center",
+              "@media(max-width:600px)": {
+                flexDirection: "row", // モバイル時は要素を縦並びに変更
+              },
             }}
           >
-            <Typography variant="body2">{item.date}</Typography>
-          </TimelineOppositeContent>
-
-          <TimelineSeparator>
-            <TimelineDot
+            {/* タイムラインオポジットコンテンツ（日付） */}
+            <TimelineOppositeContent
+              color="text.secondary"
               sx={{
-                width: "10px",
-                height: "10px",
+                flexDirection: "row",
+                padding: isMobile ? "0 8px" : "0 16px", // モバイル時に余白を調整
+                order: isMobile ? 2 : 0, // モバイル時は order を使って subtitle の後に表示
               }}
-            />
-            {index < AboutList.length - 1}
-          </TimelineSeparator>
-
-          {/* タイムラインコンテンツ（タイトルとサブタイトル） */}
-          <TimelineContent>
-            <Card
-              style={{
-                ...cardStyle,
-                opacity: visibleItems[index] ? 1 : 0,
-                transform: visibleItems[index]
-                  ? "translateY(0)"
-                  : "translateY(20px)",
-              }}
-              sx={{ width: "100%" }}
             >
-              <Typography variant="h6" style={titleStyle}>
-                {item.title}
-              </Typography>
-              <Typography variant="body2" style={subtitleStyle}>
-                {item.subtitle}
-              </Typography>
-            </Card>
-          </TimelineContent>
-        </TimelineItem>
-      ))}
+              <Typography fontSize={"1.25rem"}>{item.date}</Typography>
+            </TimelineOppositeContent>
+
+            <TimelineSeparator>
+              <TimelineDot
+                sx={{
+                  width: "10px",
+                  height: "10px",
+                }}
+              />
+              {index < AboutList.length - 1}
+            </TimelineSeparator>
+
+            {/* タイムラインコンテンツ（タイトルとサブタイトル） */}
+            <TimelineContent>
+              <Card
+                style={{
+                  ...cardStyle,
+                  opacity: visibleItems[index] ? 1 : 0,
+                  transform: visibleItems[index]
+                    ? "translateY(0)"
+                    : "translateY(20px)",
+                }}
+              >
+                <Typography variant="h6" style={titleStyle}>
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" style={subtitleStyle}>
+                  {item.subtitle}
+                </Typography>
+              </Card>
+            </TimelineContent>
+          </TimelineItem>
+        )
+      )}
     </Timeline>
   );
 }
