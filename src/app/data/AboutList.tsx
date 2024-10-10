@@ -26,12 +26,12 @@ const AboutList: About[] = [
     date: "2023年",
     title: "APU Malaysiaに1ヶ月間語学留学",
     subtitle:
-      "国際交流イベントで運営に立候補/他言語で企画運営をすることで英語力が向上",
+      "国際交流イベントで運営に立候補/英語で企画運営をすることで英語力が向上",
   },
   {
     date: "2024年7月",
     title: "Peach.Techに入部",
-    subtitle: "先輩に誘われ、Webサイトを作る楽しさを知る",
+    subtitle: "先輩に誘われ入部、Webサイトを作る楽しさを知る",
   },
   {
     date: "2024年8月",
@@ -47,6 +47,12 @@ const AboutList: About[] = [
     date: "2024年9月",
     title: "TOEICスコア855取得",
     subtitle: "英語を使った学内イベントに積極的に参加し、英語力向上",
+  },
+  {
+    date: "2024年9月",
+    title: "開発合宿でチーム開発",
+    subtitle:
+      "チーム開発の楽しさを知る/チーム開発でのコミュニケーション能力向上",
   },
 ];
 export default AboutList;
