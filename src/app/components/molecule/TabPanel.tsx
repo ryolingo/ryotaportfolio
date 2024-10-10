@@ -46,14 +46,13 @@ export default function TabPanel() {
   return (
     <Box
       sx={{
-        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <Box sx={{ width: "80%", margin: "0 auto" }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{ margin: "0 auto" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider", width: "100vw" }}>
           <Tabs
             value={value}
             onChange={handleChange}
