@@ -43,4 +43,15 @@ export const WorkList: Work[] = [
       github: "https://ryotaportfolio.vercel.app/",
     },
   },
+  {
+    imagePath: "fashonista.png",
+    title: "FASHONISTA",
+    details: {
+      content: "天気と季節からコーディネートを提案してくれるwebアプリ",
+      description:
+        " Next.jsとTypescriptとshadcnを使用して作成しました。「今日何着ようという朝の悩みを解決するためのアプリ」",
+      language: "Typescript / Next.js / Firebase / shadcn/",
+      github: "https://fashonista-pi.vercel.app/",
+    },
+  },
 ];
