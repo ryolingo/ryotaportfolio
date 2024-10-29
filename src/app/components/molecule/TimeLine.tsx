@@ -85,8 +85,9 @@ export default function OppositeContentTimeline() {
                 style={{
                   ...cardStyle,
                   opacity: visibleItems[index] ? 1 : 0,
-                  // transform: visibleItems[index]
-                  // ? "translateY(0)": "translateY(20px)",
+                  transform: visibleItems[index]
+                    ? "translateY(0)"
+                    : "translateY(20px)",
                 }}
               >
                 <Typography variant="h6" fontSize="1rem" style={titleStyle}>

@@ -33,4 +33,8 @@ export const SkillList: Skill[] = [
     imagePath: "supabase.png",
     title: "supabase",
   },
+  {
+    imagePath: "firebase.png",
+    title: "firebase",
+  },
 ];
