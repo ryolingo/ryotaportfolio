@@ -1,77 +1,79 @@
 "use client";
-import { AppBar, Container, styled, Toolbar, Typography } from "@mui/material";
-import Link from "next/link";
+
 import React from "react";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Container,
+  Box,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Link from "next/link";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
-export const Header = () => {
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+  backgroundColor: "rgba(255, 255, 255, 0.8)",
+  backdropFilter: "blur(10px)",
+  boxShadow: "none",
+  borderBottom: `1px solid ${theme.palette.divider}`,
+}));
+
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  // height: "300vh",
+  // width: "300vh",
+  padding: theme.spacing(1),
+  "&:hover": {
+    backgroundColor: theme.palette.action.hover,
+  },
+}));
+
+export default function Header() {
   return (
-    <AppBar
-      position="fixed"
-      sx={{
-        backgroundColor: "white",
-        color: "black",
-        boxShadow: "none",
-
-        borderBottom: "none",
-        height: "65px",
-      }}
-    >
-      <Container disableGutters>
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          <Typography variant="h6" fontWeight="bold" fontSize="2.0rem">
-            Portfolio
+    <StyledAppBar position="fixed">
+      <Container maxWidth="lg">
+        <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              fontWeight: 700,
+              letterSpacing: "-0.05rem",
+              color: "text.primary",
+              textDecoration: "none",
+              "&:hover": {
+                color: "primary.main",
+              },
+            }}
+          >
+            <Link
+              href="/"
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                fontSize: "2.5rem",
+              }}
+            >
+              Portfolio
+            </Link>
           </Typography>
-          <StyledIcon>
-            <Link href="https://github.com/ryolingo" target="blank">
-              <StyledImage
-                src={"/images/header/github.png"}
-                alt="githubアイコン"
-              />
+          <Box>
+            <Link href="https://github.com/ryolingo" passHref>
+              <StyledIconButton aria-label="GitHub">
+                <GitHubIcon />
+              </StyledIconButton>
             </Link>
-            <Link href={"https://x.com/ryolongo"} target="blank">
-              <Styledtwitter
-                src={"/images/header/x.png"}
-                alt="twitterアイコン"
-              />
+            <Link href="https://x.com/ryolongo" passHref>
+              <StyledIconButton aria-label="Twitter">
+                <TwitterIcon />
+              </StyledIconButton>
             </Link>
-          </StyledIcon>
+          </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </StyledAppBar>
   );
-};
-
-export default Header;
-
-const StyledIcon = styled("div")(({ theme }) => ({
-  width: "4rem",
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-  gap: "1rem",
-  [theme.breakpoints.down("sm")]: {
-    marginRight: "1.7%",
-    gap: "1rem",
-  },
-}));
-
-const Styledtwitter = styled("img")(({ theme }) => ({
-  width: "2.5rem",
-  height: "2.5rem",
-
-  [theme.breakpoints.down("sm")]: {
-    width: "3rem",
-    height: "3rem",
-    marginTop: "0.5rem",
-  },
-}));
-
-const StyledImage = styled("img")(({ theme }) => ({
-  width: "3rem",
-  height: "3rem",
-  [theme.breakpoints.down("sm")]: {
-    width: "3rem",
-    height: "3rem",
-    marginTop: "0.5rem",
-  },
-}));
+}
