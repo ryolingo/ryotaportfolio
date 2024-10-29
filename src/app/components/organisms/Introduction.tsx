@@ -45,7 +45,7 @@ const StyledContainer = styled(Container)(({ theme }) => ({
   marginRight: "0",
   justifyContent: "center",
   [theme.breakpoints.down("sm")]: {
-    paddingLeft: "5%",
+    paddingLeft: "2%",
     height: "13rem",
   },
 }));
@@ -80,7 +80,7 @@ const StyledText = styled(Typography)(({ theme }) => ({
   fontWeight: "bold",
   color: "gray",
   [theme.breakpoints.down("sm")]: {
-    fontSize: "0.6rem",
+    fontSize: "0.5rem",
     letterSpacing: "1.7",
   },
 }));
