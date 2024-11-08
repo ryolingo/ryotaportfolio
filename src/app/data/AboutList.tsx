@@ -54,5 +54,11 @@ const AboutList: About[] = [
     subtitle:
       "チーム開発の楽しさを知る/チーム開発でのコミュニケーション能力向上",
   },
+  {
+    date: "2024年10月",
+    title: "ハッカソンに即席チームで入賞",
+    subtitle:
+      "即席チームでの開発/生成AIを用いたファッションコーデアプリを作成し、努力賞を受賞",
+  },
 ];
 export default AboutList;
