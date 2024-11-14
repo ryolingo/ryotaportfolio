@@ -29,7 +29,7 @@ export default function IntroAnimation() {
           zIndex: 1,
         }}
       >
-        Welcome to my Portfolio
+        Welcome To My Portfolio
       </motion.div>
 
       {/* Background Sparkles */}
