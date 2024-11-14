@@ -17,7 +17,7 @@ export const WorkList: Work[] = [
       content: "TOEICの英単語をTypingGameで学習できるサイト",
       description:
         "toeic-tyinggameをtyoescriptとNext.jsとfirebaseを使用して作成しました。ログイン機能を追加し、",
-      language: "HTML,CSS / JavaScript / React",
+      language: "Typescript / Next.js / Firebase / MUI/",
       github: "https://toeic-typing-game.vercel.app/",
     },
   },
