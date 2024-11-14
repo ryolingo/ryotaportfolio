@@ -15,7 +15,7 @@ type TProps = {
 
 const SkillCard: React.FC<TProps> = ({ skillCard }) => {
   return (
-    <Card sx={{ width: "auto", margin: { xs: "1rem", lg: "2rem" } }}>
+    <Card sx={{ width: "auto", margin: { xs: "2rem", lg: "2rem" } }}>
       <CardActionArea>
         <Box textAlign="center" mt={3}>
           <Image
